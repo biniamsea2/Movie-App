@@ -19,11 +19,12 @@ else if (Movies.Count == 0)
 }
 else
 {
-    //if display button is true then make it equal false and if its false make it equal true
-    <input type="checkbox"@onchange="@(() => DisplayButton = !DisplayButton)"/>
+    //data binding
+    <input type="checkbox" @bind="DisplayButton" />
 
     @foreach (var movie in Movies)
     {
+        //pass in the displaybutton as a parameter for the individual movie component
         <Individual_Movie Movie="movie" DisplayButton="DisplayButton"/>
     }
 }

@@ -1,11 +1,25 @@
 ﻿<div>
-<p>@(temp += 1): Title: <b>@Movie.Title</b></p>
-<p>Release Date: <b>@Movie.ReleaseDate.ToString("dd MM yyyy")</b></p>
+    <p>Title: <b>@Movie.Title</b></p>
+    <p>Release Date: <b>@Movie.ReleaseDate.ToString("dd MM yyyy")</b></p>
+    @if (DisplayButton)
+    {
+        <div>
+            <button @onclick="Delete">Delete</button>
+        </div>
+    }
 </div>
 
+
+
+
 @code {
-    int temp = 0;
     //need to pass in the parameter for the individual movie
     [Parameter] public Movie Movie { get; set; }
+    [Parameter] public bool DisplayButton { get; set; } = false;
+
+    void Delete()
+    {
+        Console.WriteLine($"Deleting {Movie.Title}");
+    }
 
 }

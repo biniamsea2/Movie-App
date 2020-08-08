@@ -1,37 +1,52 @@
 ﻿<h3>Movie</h3>
 @if (Movies == null)
 {
-    @* found on bootstrap:
-            <button class="btn btn-primary" type="button" disabled>
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-            Loading...
-        </button>*@
     //credit for gif https://gfycat.com/stickers/search/404
-    <center>
-        <img src="https://thumbs.gfycat.com/KindTerrificIggypops-max-1mb.gif">
-        <p><b>ERROR! THE PAGE YOU'RE LOOKING FOR CAN NOT BE FOUND</b></p>
-    </center>
+    @*<center>
+            <img src="https://thumbs.gfycat.com/KindTerrificIggypops-max-1mb.gif">
+            <p><b>ERROR! THE PAGE YOU'RE LOOKING FOR CAN NOT BE FOUND</b></p>
+        </center>*@
+    @if (NullTemplate != null)
+    {
+        @NullTemplate
+    }
+    else
+    {
+        <center>
+            <img src="https://thumbs.gfycat.com/KindTerrificIggypops-max-1mb.gif">
+            <p><b>ERROR! THE PAGE YOU'RE LOOKING FOR CAN NOT BE FOUND</b></p>
+        </center>
+    }
 
 }
 else if (Movies.Count == 0)
-{
-    <text>There are no movies to display</text>
+{ @if (EmptyTemplate != null)
+    {
+        @EmptyTemplate
+    }
+    else
+    {
+        //default content
+        <text>There are no movies to display.</text>
+    }
 }
 else
 {
-    //data binding
-    <input type="checkbox" @bind="DisplayButton" />
+//data binding
+<input type="checkbox" @bind="DisplayButton" />
 
-    @foreach (var movie in Movies)
-    {
-        //pass these in as a parameter for the component methods can be passed as parameters 
-        <Individual_Movie Movie="movie" DisplayButton="DisplayButton" DeleteIndividualMovie="DeleteIndividualMovie"/>
-    }
+@foreach (var movie in Movies)
+{
+    //pass these in as a parameter for the component methods can be passed as parameters
+    <Individual_Movie Movie="movie" DisplayButton="DisplayButton" DeleteIndividualMovie="DeleteIndividualMovie" />
+}
 }
 @code {
     //in order to make our component more responsive to the data that we are changing, we want to pass
     //in the movie list as a parameter. In order to do so we need to do 3 things. 1) add [parameter] to the list. 2) Make it public. 3) add get and set, and make the list Capital(Movies) and anywhere else it has movies lowercased.
     [Parameter] public List<Movie> Movies { get; set; }
+    [Parameter] public RenderFragment NullTemplate { get; set; }
+    [Parameter] public RenderFragment EmptyTemplate { get; set; }
     bool DisplayButton = false;
 
 

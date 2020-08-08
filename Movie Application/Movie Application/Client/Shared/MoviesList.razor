@@ -15,7 +15,10 @@
 }
 else if (Movies.Count == 0)
 {
+    <center>
+        <img src="https://thumbs.gfycat.com/KindTerrificIggypops-max-1mb.gif">
     <text>There are no records to show</text>
+    </center>
 }
 else
 {
@@ -24,8 +27,8 @@ else
 
     @foreach (var movie in Movies)
     {
-        //pass these in as a parameter for the component
-        <Individual_Movie Movie="movie" DisplayButton="DisplayButton" DeleteIndividualMovie="DeleteIndividualMovie"/>
+        //pass these in as a parameter for the component methods can be passed as parameters
+        <Individual_Movie Movie="movie" DisplayButton="DisplayButton" DeleteIndividualMovie="DeleteIndividualMovie" />
     }
 }
 @code {

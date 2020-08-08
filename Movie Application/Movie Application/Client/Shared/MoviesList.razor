@@ -1,52 +1,21 @@
-﻿<h3>Movie</h3>
-@if (Movies == null)
-{
-    //credit for gif https://gfycat.com/stickers/search/404
-    @*<center>
-            <img src="https://thumbs.gfycat.com/KindTerrificIggypops-max-1mb.gif">
-            <p><b>ERROR! THE PAGE YOU'RE LOOKING FOR CAN NOT BE FOUND</b></p>
-        </center>*@
-    @if (NullTemplate != null)
-    {
-        @NullTemplate
-    }
-    else
-    {
-        <center>
-            <img src="https://thumbs.gfycat.com/KindTerrificIggypops-max-1mb.gif">
-            <p><b>ERROR! THE PAGE YOU'RE LOOKING FOR CAN NOT BE FOUND</b></p>
-        </center>
-    }
-
-}
-else if (Movies.Count == 0)
-{ @if (EmptyTemplate != null)
-    {
-        @EmptyTemplate
-    }
-    else
-    {
-        //default content
-        <text>There are no movies to display.</text>
-    }
-}
-else
-{
-//data binding
+﻿@*data binding*@
 <input type="checkbox" @bind="DisplayButton" />
 
-@foreach (var movie in Movies)
-{
-    //pass these in as a parameter for the component methods can be passed as parameters
-    <Individual_Movie Movie="movie" DisplayButton="DisplayButton" DeleteIndividualMovie="DeleteIndividualMovie" />
-}
-}
+<GenericList List="Movies">
+    @*this only cares about what to do when there are elements in our movie list*@
+    <ElementTemplate>
+        @*using "context" to access element from the GenericList component*@
+<Individual_Movie Movie="context" DisplayButton="DisplayButton" DeleteIndividualMovie="DeleteIndividualMovie" />
+
+    </ElementTemplate>
+</GenericList>
+@*pass these in as a parameter for the component methods can be passed as parameters*@
+
+
 @code {
     //in order to make our component more responsive to the data that we are changing, we want to pass
     //in the movie list as a parameter. In order to do so we need to do 3 things. 1) add [parameter] to the list. 2) Make it public. 3) add get and set, and make the list Capital(Movies) and anywhere else it has movies lowercased.
     [Parameter] public List<Movie> Movies { get; set; }
-    [Parameter] public RenderFragment NullTemplate { get; set; }
-    [Parameter] public RenderFragment EmptyTemplate { get; set; }
     bool DisplayButton = false;
 
 
@@ -54,6 +23,28 @@ else
     {
         Movies.Remove(movie);
     }
+
+    //Life cycle methods:
+    protected override void OnInitialized()
+    {
+        Console.WriteLine("OnInitialized. Movie count" + Movies.Count.ToString());
+    }
+    
+    protected override void OnParametersSet()
+    {
+        Console.WriteLine("OnParameterSet. Movie count" + Movies.Count.ToString());
+    }
+    
+    protected override void OnAfterRender(bool firstRender)
+    {
+        Console.WriteLine("OnAfterRender.first Movie count" + Movies.Count.ToString());
+    }
+
+    protected override bool ShouldRender()
+    {
+        return true;
+    }
+
 
 
 }

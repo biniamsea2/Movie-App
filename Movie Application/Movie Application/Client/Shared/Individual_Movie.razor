@@ -16,7 +16,7 @@
     //need to pass in the parameter for the individual movie
     [Parameter] public Movie Movie { get; set; }
     [Parameter] public bool DisplayButton { get; set; } = false;
-    //allows us to delegate to the parent component which is the movie component
+    //allows execution of a functionality to the parent component
     [Parameter] public EventCallback<Movie> DeleteIndividualMovie { get; set; }
 
 

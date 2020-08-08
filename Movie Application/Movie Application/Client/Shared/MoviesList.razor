@@ -24,8 +24,8 @@ else
 
     @foreach (var movie in Movies)
     {
-        //pass in the displaybutton as a parameter for the individual movie component
-        <Individual_Movie Movie="movie" DisplayButton="DisplayButton"/>
+        //pass these in as a parameter for the component
+        <Individual_Movie Movie="movie" DisplayButton="DisplayButton" DeleteIndividualMovie="DeleteIndividualMovie"/>
     }
 }
 @code {
@@ -33,6 +33,12 @@ else
     //in the movie list as a parameter. In order to do so we need to do 3 things. 1) add [parameter] to the list. 2) Make it public. 3) add get and set, and make the list Capital(Movies) and anywhere else it has movies lowercased.
     [Parameter] public List<Movie> Movies { get; set; }
     bool DisplayButton = false;
+
+
+    private void DeleteIndividualMovie(Movie movie)
+    {
+        Movies.Remove(movie);
+    }
 
 
 }

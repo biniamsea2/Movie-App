@@ -15,7 +15,7 @@
 }
 else if (Movies.Count == 0)
 {
-    <text>There are no records to show</text>
+    <text>There are no movies to display</text>
 }
 else
 {
@@ -24,7 +24,7 @@ else
 
     @foreach (var movie in Movies)
     {
-        //pass these in as a parameter for the component
+        //pass these in as a parameter for the component methods can be passed as parameters 
         <Individual_Movie Movie="movie" DisplayButton="DisplayButton" DeleteIndividualMovie="DeleteIndividualMovie"/>
     }
 }

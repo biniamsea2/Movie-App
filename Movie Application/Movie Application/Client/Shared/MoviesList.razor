@@ -40,7 +40,7 @@
     {
         Console.WriteLine("OnAfterRender.first Movie count" + Movies.Count.ToString());
     }
-    //render after its intial rendering
+    //render after its intial rendering; render when there is a change
     protected override bool ShouldRender()
     {
         return true;

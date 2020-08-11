@@ -16,10 +16,22 @@ namespace Movie_Application.Client
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
-
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
+            ConfigureServices(builder.Services);
             await builder.Build().RunAsync();
+        }
+
+        private static void ConfigureServices(IServiceCollection services)
+        {
+            //addOptions used for the authorization system
+            services.AddOptions();
+            services.AddSingleton<SingletonService>();
+            services.AddTransient<TransientService>();
+        }
+
+        private static void Configure(IComponentsApplicationBuilder app)
+        {
+            app.AddComponent<App>("app");
         }
     }
 }

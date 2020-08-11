@@ -25,21 +25,22 @@
     }
 
     //Life cycle methods:
+    //trigger an http request to the server to obtain the data to be displayed in the component, executed only once
     protected override void OnInitialized()
     {
         Console.WriteLine("OnInitialized. Movie count" + Movies.Count.ToString());
     }
-    
+    //executed when the component has recevied all parameters, executed everytime the parameter is updated
     protected override void OnParametersSet()
     {
         Console.WriteLine("OnParameterSet. Movie count" + Movies.Count.ToString());
     }
-    
+    //executed after the componenet is finished rendering; when the html is already displayed.
     protected override void OnAfterRender(bool firstRender)
     {
         Console.WriteLine("OnAfterRender.first Movie count" + Movies.Count.ToString());
     }
-
+    //render after its intial rendering
     protected override bool ShouldRender()
     {
         return true;

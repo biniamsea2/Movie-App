@@ -10,10 +10,10 @@ namespace Movie_Application.Client
     /// </summary>
     public class SingletonService
     {
-        public int Valor { get; set; }
+        public int Value { get; set; }
     }
     public class TransientService
     {
-        public int Valor { get; set; }
+        public int Value { get; set; }
     }
 }

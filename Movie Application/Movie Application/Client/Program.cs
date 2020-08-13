@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Movie_Application.Client.Helper;
 
 namespace Movie_Application.Client
 {
@@ -27,11 +28,8 @@ namespace Movie_Application.Client
             services.AddOptions();
             services.AddSingleton<SingletonService>();
             services.AddTransient<TransientService>();
-        }
-
-        private static void Configure(IComponentsApplicationBuilder app)
-        {
-            app.AddComponent<App>("app");
+            //if someone requests the irepository service then the system should reply with an instance of the repositoryinmemory class
+            services.AddTransient<IRepository, RepositoryInMemory>();
         }
     }
 }

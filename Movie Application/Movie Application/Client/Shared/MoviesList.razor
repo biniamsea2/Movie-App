@@ -23,7 +23,8 @@
 
     private async Task DeleteIndividualMovie(Movie movie)
     {
-        var confirmed = await js.InvokeAsync<bool>("confirm", $"Are you sure you want to delete {movie.Title}?");
+        await js.MyFunction("custom message");
+        var confirmed = await js.Confirm($"Are you sure you want to delete {movie.Title}?");
         if (confirmed)
         {
             Movies.Remove(movie);

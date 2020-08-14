@@ -1,11 +1,13 @@
-﻿@*data binding*@
+﻿@inject IJSRuntime js
+
+@*data binding*@
 <input type="checkbox" @bind="DisplayButton" />
 
 <GenericList List="Movies">
     @*this only cares about what to do when there are elements in our movie list*@
     <ElementTemplate>
         @*using "context" to access element from the GenericList component. context is a default*@
-<Individual_Movie Movie="context" DisplayButton="DisplayButton" DeleteIndividualMovie="DeleteIndividualMovie" />
+        <Individual_Movie Movie="context" DisplayButton="DisplayButton" DeleteIndividualMovie="DeleteIndividualMovie" />
 
     </ElementTemplate>
 </GenericList>
@@ -19,9 +21,13 @@
     bool DisplayButton = false;
 
 
-    private void DeleteIndividualMovie(Movie movie)
+    private async Task DeleteIndividualMovie(Movie movie)
     {
-        Movies.Remove(movie);
+        var confirmed = await js.InvokeAsync<bool>("confirm", $"Are you sure you want to delete {movie.Title}?");
+        if (confirmed)
+        {
+            Movies.Remove(movie);
+        }
     }
 
     //Life cycle methods:

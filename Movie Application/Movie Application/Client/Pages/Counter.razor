@@ -1,6 +1,5 @@
 ﻿@page "/counter"
-@inject SingletonService singleton
-@inject TransientService transient
+
 
 <h1>Counter</h1>
 
@@ -13,27 +12,3 @@
 
 <MoviesList Movies="movies" />
 
-@code {
-    private int currentCount = 0;
-
-    private void IncrementCount()
-    {
-        currentCount++;
-        transient.Value = currentCount;
-        singleton.Value = currentCount;
-    }
-
-
-    private List<Movie> movies;
-    // OnInitialized runs when our razor file loads
-    protected override void OnInitialized()
-    {
-        //await Task.Delay(3500);
-        movies = new List<Movie>()
-{
-            new Movie () {Title = "Logan", ReleaseDate = new DateTime(2017, 3, 3)},
-            new Movie () {Title = "Kong: Skull Island", ReleaseDate = new DateTime(2017, 3, 10)},
-            new Movie () {Title = "Jumanji: Welcome to the Jungle", ReleaseDate = new DateTime(2017, 12, 20)},
-        };
-    }
-}

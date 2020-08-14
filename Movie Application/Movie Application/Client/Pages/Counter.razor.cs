@@ -14,6 +14,7 @@ namespace Movie_Application.Client.Pages
         [Inject] SingletonService singleton { get; set; }
         [Inject] TransientService transient { get; set; }
         [Inject] IJSRuntime js { get; set; }
+
         private int currentCount = 0;
         private static int currentCountStatic = 0;
 
@@ -30,7 +31,8 @@ namespace Movie_Application.Client.Pages
             };
         }
 
-        private async Task IncrementCount()
+        [JSInvokable]
+        public async Task IncrementCount()
         {
             currentCount++;
             transient.Value = currentCount;
@@ -45,6 +47,11 @@ namespace Movie_Application.Client.Pages
             return Task.FromResult(currentCountStatic);
         }
 
+        private async Task IncrementCountJavascipt()
+        {
+            await js.InvokeVoidAsync("dotnetInstanceInvocation",
+                DotNetObjectReference.Create(this));
+        }
 
 
     }

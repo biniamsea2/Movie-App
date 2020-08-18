@@ -11,25 +11,49 @@
 
     </ElementTemplate>
 </GenericList>
-@*pass these in as a parameter for the component methods can be passed as parameters*@
+
+<Confirmation1 @ref="confirmation" onCancel="onCancel" onConfirm="onConfirm">
+    <div>Do you wish to delete @movieToBeDeleted.Title?</div>
+    </Confirmation1>/>
+
 
 
 @code {
+    Confirmation1 confirmation;
     //in order to make our component more responsive to the data that we are changing, we want to pass
     //in the movie list as a parameter. In order to do so we need to do 3 things. 1) add [parameter] to the list. 2) Make it public. 3) add get and set, and make the list Capital(Movies) and anywhere else it has movies lowercased.
     [Parameter] public List<Movie> Movies { get; set; }
     bool DisplayButton = false;
 
-
+    Movie movieToBeDeleted;
     private async Task DeleteIndividualMovie(Movie movie)
     {
-        await js.MyFunction("custom message");
-        var confirmed = await js.Confirm($"Are you sure you want to delete {movie.Title}?");
-        if (confirmed)
-        {
-            Movies.Remove(movie);
-        }
+        movieToBeDeleted = movie;
+        confirmation.Show();
+        //await js.MyFunction("custom message");
+        //var confirmed = await js.Confirm($"Are you sure you want to delete {movie.Title}?");
+        //if (confirmed)
+        //{
+        //    Movies.Remove(movie);
+        //}
     }
+
+    void onConfirm()
+    {
+        Movies.Remove(movieToBeDeleted);
+        confirmation.Hide();
+        movieToBeDeleted = null;
+    }
+
+    
+    void onCancel()
+    {
+        confirmation.Hide();
+        movieToBeDeleted = null;
+    }
+
+
+
 
     //Life cycle methods:
     //trigger an http request to the server to obtain the data to be displayed in the component, executed only once

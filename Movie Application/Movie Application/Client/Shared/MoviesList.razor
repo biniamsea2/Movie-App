@@ -1,82 +1,33 @@
 ﻿@inject IJSRuntime js
 
-@*data binding*@
-<input type="checkbox" @bind="DisplayButton" />
+<div class="movies-container">
 
-<GenericList List="Movies">
-    @*this only cares about what to do when there are elements in our movie list*@
-    <ElementTemplate>
-        @*using "context" to access element from the GenericList component. context is a default*@
-        <Individual_Movie Movie="context" DisplayButton="DisplayButton" DeleteIndividualMovie="DeleteIndividualMovie" />
+    <GenericList List="Movies">
+        @*this only cares about what to do when there are elements in our movie list*@
+        <ElementTemplate Context="movie">
+            @*using "context" to access element from the GenericList component. context is a default*@
+            <Individual_Movie Movie="movie" DeleteIndividualMovie="DeleteIndividualMovie" />
 
-    </ElementTemplate>
-</GenericList>
-
-<Confirmation1 @ref="confirmation" onCancel="onCancel" onConfirm="onConfirm">
-    <div>Do you wish to delete @movieToBeDeleted.Title?</div>
-    </Confirmation1>/>
-
+        </ElementTemplate>
+    </GenericList>
+</div>
 
 
 @code {
-    Confirmation1 confirmation;
     //in order to make our component more responsive to the data that we are changing, we want to pass
     //in the movie list as a parameter. In order to do so we need to do 3 things. 1) add [parameter] to the list. 2) Make it public. 3) add get and set, and make the list Capital(Movies) and anywhere else it has movies lowercased.
     [Parameter] public List<Movie> Movies { get; set; }
-    bool DisplayButton = false;
 
-    Movie movieToBeDeleted;
     private async Task DeleteIndividualMovie(Movie movie)
     {
-        movieToBeDeleted = movie;
-        confirmation.Show();
-        //await js.MyFunction("custom message");
-        //var confirmed = await js.Confirm($"Are you sure you want to delete {movie.Title}?");
-        //if (confirmed)
-        //{
-        //    Movies.Remove(movie);
-        //}
-    }
 
-    void onConfirm()
-    {
-        Movies.Remove(movieToBeDeleted);
-        confirmation.Hide();
-        movieToBeDeleted = null;
+        await js.MyFunction("custom message");
+        var confirmed = await js.Confirm($"Are you sure you want to delete {movie.Title}?");
+        if (confirmed)
+        {
+            Movies.Remove(movie);
+        }
     }
-
-    
-    void onCancel()
-    {
-        confirmation.Hide();
-        movieToBeDeleted = null;
-    }
-
-
-
-
-    //Life cycle methods:
-    //trigger an http request to the server to obtain the data to be displayed in the component, executed only once
-    protected override void OnInitialized()
-    {
-        Console.WriteLine("OnInitialized. Movie count" + Movies.Count.ToString());
-    }
-    //executed when the component has recevied all parameters, executed everytime the parameter is updated
-    protected override void OnParametersSet()
-    {
-        Console.WriteLine("OnParameterSet. Movie count" + Movies.Count.ToString());
-    }
-    //executed after the componenet is finished rendering; when the html is already displayed.
-    protected override void OnAfterRender(bool firstRender)
-    {
-        Console.WriteLine("OnAfterRender.first Movie count" + Movies.Count.ToString());
-    }
-    //render after its intial rendering; render when there is a change
-    protected override bool ShouldRender()
-    {
-        return true;
-    }
-
 
 
 }

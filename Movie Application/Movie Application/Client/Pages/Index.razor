@@ -1,9 +1,6 @@
 ﻿@page "/"
 @inject IRepository repository
-@inject SingletonService singleton
-@using static Movie_Application.Client.Shared.MainLayout;
 
-<p style="color:@AppState.Color">Singleton count: @singleton.Value</p>
 
 <div>
     @*name of the component, this allows us to use the info from MovieList razor component and display it on this page*@
@@ -11,11 +8,8 @@
     <MoviesList Movies="movies" />
 
 </div>
-<button @onclick="AddNewMovie">Add New Movie</button>
-
 
 @code{
-    [CascadingParameter] public AppState AppState { get; set; }
 
     private List<Movie> movies;
     // OnInitialized runs when our razor file loads
@@ -25,8 +19,4 @@
 
     }
 
-    private void AddNewMovie()
-    {
-        movies.Add(new Movie() { Title = "Test Movie", ReleaseDate = DateTime.Today });
-    }
 }

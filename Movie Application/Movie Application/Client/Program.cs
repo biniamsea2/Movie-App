@@ -26,8 +26,6 @@ namespace Movie_Application.Client
         {
             //addOptions used for the authorization system
             services.AddOptions();
-            services.AddSingleton<SingletonService>();
-            services.AddTransient<TransientService>();
             //if someone requests the irepository service then the system should reply with an instance of the repositoryinmemory class
             services.AddTransient<IRepository, RepositoryInMemory>();
         }

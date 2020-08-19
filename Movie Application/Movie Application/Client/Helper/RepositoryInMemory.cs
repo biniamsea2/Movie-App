@@ -12,8 +12,8 @@ namespace Movie_Application.Client.Helper
         {
             return new List<Movie>()
             {
-            new Movie() { Title = "The Wolf of Wall Street", ReleaseDate = new DateTime(2013, 12, 25) },
-            new Movie() { Title = "The Lion King", ReleaseDate = new DateTime(1994, 6, 24) },
+            new Movie() { Title = "The Wolf of Wall Street", ReleaseDate = new DateTime(2013, 12, 25), Poster="https://m.media-amazon.com/images/M/MV5BMjIxMjgxNTk0MF5BMl5BanBnXkFtZTgwNjIyOTg2MDE@._V1_SY1000_CR0,0,674,1000_AL_.jpg"},
+            new Movie() { Title = "The Lion King", ReleaseDate = new DateTime(1994, 6, 24), Poster="https://m.media-amazon.com/images/M/MV5BMjIxMjgxNTk0MF5BMl5BanBnXkFtZTgwNjIyOTg2MDE@._V1_SY1000_CR0,0,674,1000_AL_.jpg" },
             new Movie() { Title = "The Godfather", ReleaseDate = new DateTime(1972, 3, 24) },
             new Movie() { Title = "Catch Me if You Can", ReleaseDate = new DateTime(2002, 12, 25) },
             new Movie() { Title = "Coco", ReleaseDate = new DateTime(2017, 11, 22) },

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static Movie_Application.Client.Shared.MainLayout;
 
 namespace Movie_Application.Client.Pages
 {
@@ -14,6 +15,7 @@ namespace Movie_Application.Client.Pages
         [Inject] SingletonService singleton { get; set; }
         [Inject] TransientService transient { get; set; }
         [Inject] IJSRuntime js { get; set; }
+        [CascadingParameter] public AppState AppState { get; set; }
 
         private int currentCount = 0;
         private static int currentCountStatic = 0;

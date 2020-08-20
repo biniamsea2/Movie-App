@@ -7,6 +7,7 @@ namespace Movie_Application.Shared.Entities
 {
     public class Movie
     {
+        public int Id { get; set; } = 1;
         public string Title { get; set; }
         [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }

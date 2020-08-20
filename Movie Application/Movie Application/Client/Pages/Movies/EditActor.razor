@@ -1,6 +1,6 @@
-﻿@page "/actor/edit"
+﻿@page "/actor/edit/{ActorId:int}"
 <h3>EditActor</h3>
 
 @code {
-
+    [Parameter] public int ActorId { get; set; }
 }

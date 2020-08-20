@@ -1,8 +1,8 @@
 ﻿<div class="individual-movie-container">
-    <a>
+    <a href="@movieURL">
         <img src="@Movie.Poster" alt="Poster" class="movie-poster" />
     </a>
-    <p>@Movie.TitleBrief</p>
+    <p><a href="@movieURL">@Movie.TitleBrief</a></p>
     <div>
         <a class="btn btn-info">Edit</a>
         <button type="button" class="btn btn-danger"
@@ -17,7 +17,12 @@
     [Parameter] public Movie Movie { get; set; }
     //allows execution of a functionality to the parent component
     [Parameter] public EventCallback<Movie> DeleteIndividualMovie { get; set; }
+    private string movieURL = string.Empty;
 
+    protected override void OnInitialized()
+    {
+        movieURL = $"movies/";
+    }
 
 
 

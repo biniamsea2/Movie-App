@@ -8,7 +8,9 @@ namespace Movie_Application.Shared.Entities
     public class Genre
     {
         public int Id { get; set; }
-        [Required(ErrorMessage ="Test")]
+        // Allows you to customize the validation error to the user:
+        //[Required(ErrorMessage ="This is an error")]
+        [Required]
         public string Name { get; set; }
     }
 }

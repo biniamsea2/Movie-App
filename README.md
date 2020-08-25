@@ -1,5 +1,3 @@
 # Movie App
 
 
-
-

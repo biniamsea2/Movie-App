@@ -1,2 +1,2 @@
-# Movie Applicationn
+# Movie Application
 

@@ -3,11 +3,29 @@
 
 <h3>Create Movie</h3>
 
-<MovieForm Movie="Movie" OnValidSubmit="SaveMovie"/>
+<MovieForm Movie="Movie" OnValidSubmit="SaveMovie" NotSelectedGenres="NotSelected"/>
 
 @code {
 
     private Movie Movie = new Movie();
+
+    private List<Genre> NotSelected = new List<Genre>()
+    {
+        new Genre() {Id = 1, Name = "Action"},
+        new Genre() {Id = 1, Name = "Adventure"},
+        new Genre() {Id = 1, Name = "Animation"},
+        new Genre() {Id = 1, Name = "Comedy"},
+        new Genre() {Id = 1, Name = "Crime"},
+        new Genre() {Id = 1, Name = "Drama"},
+        new Genre() {Id = 1, Name = "Documentary"},
+        new Genre() {Id = 1, Name = "Fiction"},
+        new Genre() {Id = 1, Name = "Horror"},
+        new Genre() {Id = 1, Name = "Mystery"},
+        new Genre() {Id = 1, Name = "Romance"},
+        new Genre() {Id = 1, Name = "Science Fiction"},
+        new Genre() {Id = 1, Name = "Thriller"}
+    };
+
     private void SaveMovie()
     {
         Console.WriteLine("This works");

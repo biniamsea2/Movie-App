@@ -2,14 +2,37 @@
 
 <h3>EditMovie</h3>
 
-@if(Movie != null)
+@if (Movie != null)
 {
-    <MovieForm Movie="Movie" OnValidSubmit="Edit"/>
+    <MovieForm Movie="Movie" OnValidSubmit="Edit" NotSelectedGenres="NotSelected" SelectedGenres="Selected"/>
 }
 
 @code {
     [Parameter] public int MovieId { get; set; }
     private Movie Movie;
+
+    private List<Genre> NotSelected = new List<Genre>()
+    {
+        new Genre() {Id = 1, Name = "Action"},
+        new Genre() {Id = 1, Name = "Adventure"},
+        new Genre() {Id = 1, Name = "Animation"},
+        new Genre() {Id = 1, Name = "Comedy"},
+        new Genre() {Id = 1, Name = "Crime"},
+        new Genre() {Id = 1, Name = "Drama"},
+        new Genre() {Id = 1, Name = "Documentary"},
+        new Genre() {Id = 1, Name = "Fiction"},
+        new Genre() {Id = 1, Name = "Horror"},
+        new Genre() {Id = 1, Name = "Mystery"},
+ 
+    };
+
+    private List<Genre> Selected = new List<Genre>()
+    {
+        new Genre() {Id = 1, Name = "Romance"},
+        new Genre() {Id = 1, Name = "Science Fiction"},
+        new Genre() {Id = 1, Name = "Thriller"}
+    };
+
 
     protected override void OnInitialized()
     {

@@ -9,10 +9,10 @@
 ## Application Specifications
 ###### This application includes the following:  
 
-#### 1) Startup File 
-#### 2) Controller  
-#### 3) Data  
-#### 4) Models  
+#### 1) 
+#### 2)   
+#### 3)   
+#### 4)   
 
 ---
 

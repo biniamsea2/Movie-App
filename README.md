@@ -38,34 +38,34 @@ Then select and open ```Movie Application.sln```
 ### Visuals
 
 ### 
-![Image 1](https://github.com/biniamsea2/KobeAPI/blob/master/Screenshot%20(4).png)
+![Image 1]()
 
 ### 
-![Image 2](https://github.com/biniamsea2/KobeAPI/blob/master/Screenshot%20(5).png)
+![Image 2]()
 
 ### 
-![Image 3](https://github.com/biniamsea2/KobeAPI/blob/master/Screenshot%20(6).png)
+![Image 3]()
 
 ### 
-![Image 4](https://github.com/biniamsea2/KobeAPI/blob/master/Screenshot%20(6).png)
+![Image 4]()
 
 ### 
-![Image 5](https://github.com/biniamsea2/KobeAPI/blob/master/Screenshot%20(6).png)
+![Image 5]()
 
 ### 
-![Image 6](https://github.com/biniamsea2/KobeAPI/blob/master/Screenshot%20(6).png)
+![Image 6]()
 
 ### 
-![Image 7](https://github.com/biniamsea2/KobeAPI/blob/master/Screenshot%20(6).png)
+![Image 7]()
 
 ### 
-![Image 8](https://github.com/biniamsea2/KobeAPI/blob/master/Screenshot%20(6).png)
+![Image 8]()
 
 ### 
-![Image 9](https://github.com/biniamsea2/KobeAPI/blob/master/Screenshot%20(6).png)
+![Image 9]()
 
 ### 
-![Image 10](https://github.com/biniamsea2/KobeAPI/blob/master/Screenshot%20(6).png)
+![Image 10]()
 
 ---
 ### Tables:  

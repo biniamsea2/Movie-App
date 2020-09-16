@@ -30,7 +30,8 @@
             @foreach (var item in Suggestions)
             {
                 <div @key="item" class="blazored-typeahead_results"
-                     tabindex="0" @onclick="@(() => SelectedSuggestion(item))">
+                     tabindex="0" @onclick="@(() => SelectedSuggestion(item))"
+                     @onmouseover="OnmouseoverSuggestion" @onmouseout="OnmouseoutSuggestion">
                     @ResultTemplate(item)
 
                 </div>
@@ -146,8 +147,27 @@
 
     private void onfocusout()
     {
+        if (!IsMouseInSuggestion)
+        {
+            IsShowingSuggestions = false;
 
-        IsShowingSuggestions = false;
+        }
 
     }
+
+    bool IsMouseInSuggestion = false;
+
+    private void OnmouseoverSuggestion()
+    {
+
+        IsMouseInSuggestion = true;
+
+    }
+    private void OnmouseoutSuggestion()
+    {
+
+        IsMouseInSuggestion = false;
+
+    }
+
 }

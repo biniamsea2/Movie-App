@@ -1,5 +1,94 @@
-﻿<h3>CustomTypehead</h3>
+﻿@*Modification from Chris Sainty's typeahead component*@
 
+@*onclick: for when you click on the text box
+    onfocus: when you click outside the text box*@
+@using System.Timers
+
+<div class="blazored-typeahead">
+    <div class="blazored-typeahead_controls">
+        <input type="text"
+               class="blazored-typeahead_input"
+               autocomplete="off"
+               placeholder="@Placeholder"
+               @bind-value="@SearchText"
+               @bind-value:event="oninput"
+               @onclick="@ShowSuggestions"
+               @onfocus="onfocusout" />
+    </div>
+    @if (IsSearching)
+    {
+        <div class="blazored-typeahead_results">
+            <div class="blazored-typeahead_results">
+                <span>Loading...</span>
+            </div>
+        </div>
+    }
+    else if (ShouldShowSuggestions())
+    {
+        <div class="blazored-typeahead_results">
+        </div>
+    }
+    else if (ShowNotFound())
+    {
+        <div class="blazored-typeahead_results">
+            @if (NotFoundTemplate != null)
+            {
+                <div class="blazored-typeahead_notfound">
+                    @NotFoundTemplate
+                </div>
+            }
+            else
+            {
+                <div class="blazored-typeahead_notfound">
+                    No Results Found
+                </div>
+            }
+        </div>
+    }
+</div>
 @code {
+    [Parameter] public string Placeholder { get; set; }
+    [Parameter] public int MinimumLength { get; set; } = 3;
+    [Parameter] public int Debounce { get; set; } = 300;
 
+    private bool IsSearching = false;
+    private bool IsShowingSuggestions = false;
+    private string _searchText = string.Empty;
+    //timer to start search once the user is done typing
+    private Timer _debounceTimer { get; set; }
+
+    protected override void OnInitialized()
+    {
+        _debounceTimer = new Timer();
+        _debounceTimer.Interval = Debounce;
+        _debounceTimer.AutoReset = false;
+        _debounceTimer.Elapsed += Search;
+        base.OnInitialized();
+    }
+
+    protected async void Search(Object source, ElapsedEventArgs e)
+    {
+        IsSearching = true;
+        IsShowingSuggestions = false;
+        await InvokeAsync(StateHasChanged);
+    }
+
+
+    private string SearchText
+    {
+        get => _searchText;
+        set
+        {
+            _searchText = value;
+
+            if (value.Length == 0)
+            {
+                IsShowingSuggestions = false;
+            }
+            else if (value.Length >= MinimumLength)
+            {
+
+            }
+        }
+    }
 }

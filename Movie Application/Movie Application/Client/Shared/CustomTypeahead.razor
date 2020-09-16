@@ -3,6 +3,7 @@
 @*onclick: for when you click on the text box
     onfocus: when you click outside the text box*@
 @using System.Timers
+@typeparam TItem
 
 <div class="blazored-typeahead">
     <div class="blazored-typeahead_controls">
@@ -26,6 +27,14 @@
     else if (ShouldShowSuggestions())
     {
         <div class="blazored-typeahead_results">
+            @foreach (var item in Suggestions)
+            {
+                <div @key="item" class="blazored-typeahead_results"
+                     tabindex="0" @onclick="@(() => SelectedSuggestion(item))">
+                    @ResultTemplate(item)
+
+                </div>
+            }
         </div>
     }
     else if (ShowNotFound())
@@ -50,12 +59,19 @@
     [Parameter] public string Placeholder { get; set; }
     [Parameter] public int MinimumLength { get; set; } = 3;
     [Parameter] public int Debounce { get; set; } = 300;
+    [Parameter] public Func<string, Task<IEnumerable<TItem>>> SearchMethod { get; set; }
+    [Parameter] public RenderFragment<TItem> ResultTemplate { get; set; }
+    [Parameter] public RenderFragment NotFoundTemplate { get; set; }
+    [Parameter] public EventCallback<TItem> ValueChanged { get; set; }
+
+
 
     private bool IsSearching = false;
     private bool IsShowingSuggestions = false;
     private string _searchText = string.Empty;
     //timer to start search once the user is done typing
     private Timer _debounceTimer { get; set; }
+    protected TItem[] Suggestions { get; set; } = new TItem[0];
 
     protected override void OnInitialized()
     {
@@ -71,8 +87,20 @@
         IsSearching = true;
         IsShowingSuggestions = false;
         await InvokeAsync(StateHasChanged);
+
+        Suggestions = (await SearchMethod.Invoke(_searchText)).ToArray();
+
+        IsSearching = false;
+        IsShowingSuggestions = true;
+        await InvokeAsync(StateHasChanged);
+
+
     }
 
+    private bool ShouldShowSuggestions()
+    {
+        return IsShowingSuggestions && Suggestions.Any();
+    }
 
     private string SearchText
     {
@@ -84,11 +112,42 @@
             if (value.Length == 0)
             {
                 IsShowingSuggestions = false;
+                _debounceTimer.Stop();
+                Suggestions = new TItem[0];
             }
             else if (value.Length >= MinimumLength)
             {
-
+                //stop it first incase it was already running
+                _debounceTimer.Stop();
+                _debounceTimer.Start();
             }
         }
+    }
+
+
+    private async Task SelectedSuggestion(TItem item)
+    {
+        SearchText = "";
+        await ValueChanged.InvokeAsync(item);
+    }
+
+    private bool ShowNotFound()
+    {
+        return !Suggestions.Any() && IsShowingSuggestions;
+    }
+
+    private void ShowSuggestions()
+    {
+        if (Suggestions.Any())
+        {
+            IsShowingSuggestions = true;
+        }
+    }
+
+    private void onfocusout()
+    {
+
+        IsShowingSuggestions = false;
+
     }
 }

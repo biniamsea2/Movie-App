@@ -12,6 +12,7 @@ namespace Movie_Application.Shared.Entities
         //[Required(ErrorMessage ="This is an error")]
         [Required]
         public string Name { get; set; }
+        //navigation property, many to many relationship
         public List<MoviesGenres> MoviesGenres { get; set; } = new List<MoviesGenres>();
 
     }

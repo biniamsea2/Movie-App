@@ -16,8 +16,11 @@
             @ondragover="@(() => HandleDragOver(item))"
             class="list-group-item list-group-item-action">
 
-            @MyListTemplate
-            <span @onclick="@(() => SelectedElements.Remove(item))">X</span>
+            @MyListTemplate(item)
+            <span @onclick="@(() => SelectedElements.Remove(item))"
+                  class="badge badge-danger badge-pill"
+                  style="cursor:pointer"
+                  >X</span>
         </li>
     }
 </ul>

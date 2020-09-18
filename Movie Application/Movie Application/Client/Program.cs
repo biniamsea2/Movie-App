@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Movie_Application.Client.Helper;
 using Tewr.Blazor.FileReader;
+using Movie_Application.Client.Repository;
 
 namespace Movie_Application.Client
 {
@@ -29,6 +30,8 @@ namespace Movie_Application.Client
             services.AddOptions();
             //if someone requests the irepository service then the system should reply with an instance of the repositoryinmemory class
             services.AddTransient<IRepository, RepositoryInMemory>();
+            services.AddScoped<IHttpService, HttpService>();
+            services.AddScoped<IGenreRepository, GenreRepository>();
             services.AddFileReaderService(options => options.InitializeOnFirstCall = true);
         }
     }

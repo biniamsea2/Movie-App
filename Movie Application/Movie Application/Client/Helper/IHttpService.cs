@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Movie Application.Client.Helper
+namespace Movie_Application.Client.Helper
 {
-    interface IHttpService
-{
-}
+    public interface IHttpService
+    {
+        Task<HttpResponseWrapper<object>> Post<T>(string url, T data);
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using Movie_Application.Client.Helper;
+using Movie_Application.Shared.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Movie_Application.Client.Repository
 {
-    public class PersonRepository
+    public class PersonRepository : IPeopleRepository
     {
         private readonly IHttpService httpService;
         private string url = "api/people";
@@ -16,7 +17,7 @@ namespace Movie_Application.Client.Repository
             this.httpService = httpService;
         }
 
-        public async Task CreatePeople(Person genre)
+        public async Task CreatePerson(Person genre)
         {
             var response = await httpService.Post(url, genre);
             if (!response.Success)

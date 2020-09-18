@@ -32,6 +32,7 @@ namespace Movie_Application.Client
             services.AddTransient<IRepository, RepositoryInMemory>();
             services.AddScoped<IHttpService, HttpService>();
             services.AddScoped<IGenreRepository, GenreRepository>();
+            services.AddScoped<IPeopleRepository, PersonRepository>();
             services.AddFileReaderService(options => options.InitializeOnFirstCall = true);
         }
     }

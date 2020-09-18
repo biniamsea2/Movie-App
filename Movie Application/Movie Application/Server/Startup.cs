@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Movie_Application.Server.Helpers;
 
 namespace Movie_Application.Server
 {
@@ -25,6 +26,8 @@ namespace Movie_Application.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            services.AddHttpContextAccessor();
+            services.AddScoped<IFileStorageService, InAppStorageService>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

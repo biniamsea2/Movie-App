@@ -25,5 +25,9 @@
     <ProjectReference Include="..\Shared\Movie Application.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 
 </Project>

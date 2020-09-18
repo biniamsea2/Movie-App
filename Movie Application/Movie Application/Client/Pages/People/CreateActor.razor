@@ -1,14 +1,26 @@
 ﻿@page "/actor/create"
+@inject IPeopleRepository peopleRepository
+@inject NavigationManager navigationManger
+
 <h3>CreateActor</h3>
 
-<PeopleForm Person="Person" OnValidSubmit="Create"/>
+<PeopleForm Person="Person" OnValidSubmit="Create" />
 
 
 @code {
     Person Person = new Person();
 
-    private void Create()
+    private async Task Create()
     {
-        Console.WriteLine("creating person...");
+        try
+        {
+            await peopleRepository.CreatePerson(Person);
+            navigationManger.NavigateTo("cast");
+        }
+        catch (Exception ex)
+        {
+
+            Console.WriteLine(ex.Message);
+        }
     }
 }

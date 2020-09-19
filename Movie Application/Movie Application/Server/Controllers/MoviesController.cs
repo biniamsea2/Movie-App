@@ -10,11 +10,11 @@ namespace Movie_Application.Server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class MovieController : ControllerBase
+    public class MoviesController : ControllerBase
     {
         private readonly ApplicationDbContext context;
         private readonly IFileStorageService fileStorageService;
-        public MovieController(ApplicationDbContext context, IFileStorageService fileStorageService)
+        public MoviesController(ApplicationDbContext context, IFileStorageService fileStorageService)
         {
             this.context = context;
             this.fileStorageService = fileStorageService;

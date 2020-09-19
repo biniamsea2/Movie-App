@@ -3,7 +3,7 @@
 
 ----
 
-## Program Summary 
+## Application Summary 
 
 ## Application Specifications
 ###### This application includes the following:  

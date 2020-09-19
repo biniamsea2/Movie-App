@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Movie_Application.Client.Helper;
 using Tewr.Blazor.FileReader;
 using Movie_Application.Client.Repository;
+using Movie_Application.Client.Pages.People;
 
 namespace Movie_Application.Client
 {
@@ -33,6 +34,7 @@ namespace Movie_Application.Client
             services.AddScoped<IHttpService, HttpService>();
             services.AddScoped<IGenreRepository, GenreRepository>();
             services.AddScoped<IPeopleRepository, PersonRepository>();
+            services.AddScoped<IMoviesRepository, MoviesRepository>();
             services.AddFileReaderService(options => options.InitializeOnFirstCall = true);
         }
     }

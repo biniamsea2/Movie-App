@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Movie_Application.Shared.Entities
@@ -13,6 +14,9 @@ namespace Movie_Application.Shared.Entities
         public string Picture { get; set; }
         [Required]
         public DateTime? DateOfBirth { get; set; }
+        public List<MovieActors> MoviesActors { get; set; } = new List<MovieActors>();
+        [NotMapped]
+        public string Character { get; set; }
 
         public override bool Equals(object obj)
         {

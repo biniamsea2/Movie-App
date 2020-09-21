@@ -15,7 +15,7 @@ using Movie_Application.Client.Pages.People;
 namespace Movie_Application.Client
 {
     public class Program
-    {
+    {`
         public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -35,6 +35,7 @@ namespace Movie_Application.Client
             services.AddScoped<IGenreRepository, GenreRepository>();
             services.AddScoped<IPeopleRepository, PersonRepository>();
             services.AddScoped<IMoviesRepository, MoviesRepository>();
+            services.AddScoped<IGenreRepository, GenreRepository>();
             services.AddFileReaderService(options => options.InitializeOnFirstCall = true);
         }
     }

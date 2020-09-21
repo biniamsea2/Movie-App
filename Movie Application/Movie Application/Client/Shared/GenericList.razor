@@ -1,5 +1,5 @@
 ﻿@*Generic List component handles what happens when we have elements in our movie List,
-also handles when we dont have elements in our movie list.*@
+    also handles when we dont have elements in our movie list.*@
 
 @*generic variables start with the letter "T"*@
 @typeparam TItem
@@ -20,10 +20,12 @@ also handles when we dont have elements in our movie list.*@
             <p><b>ERROR! THE PAGE YOU'RE LOOKING FOR CAN NOT BE FOUND</b></p>
         </center>
     }
-
 }
+
+
 else if (List.Count == 0)
-{ @if (EmptyTemplate != null)
+{
+    @if (EmptyTemplate != null)
     {
         @EmptyTemplate
     }
@@ -35,16 +37,23 @@ else if (List.Count == 0)
 }
 else
 {
-
-
-@foreach (var element in List)
-{
-    @ElementTemplate(element)
+    @if (ElementTemplate != null)
+    {
+        @foreach (var element in List)
+        {
+            @ElementTemplate(element)
+        }
+    }
+    else
+    {
+        @WholeListTemplate
+    }
 }
-}
+
 @code {
     [Parameter] public RenderFragment NullTemplate { get; set; }
     [Parameter] public RenderFragment EmptyTemplate { get; set; }
-    [Parameter] public RenderFragment <TItem> ElementTemplate { get; set; }
+    [Parameter] public RenderFragment<TItem> ElementTemplate { get; set; }
+    [Parameter] public RenderFragment WholeListTemplate { get; set; }
     [Parameter] public List<TItem> List { get; set; }
 }

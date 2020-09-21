@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Movie_Application.Shared.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,12 @@ namespace Movie_Application.Server.Controllers
         public GenreController(ApplicationDbContext context)
         {
             this.context = context;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<Genre>>> Get()
+        {
+            return await context.Genres.ToListAsync();
         }
 
         [HttpPost]

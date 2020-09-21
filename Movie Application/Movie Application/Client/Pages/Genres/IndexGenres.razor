@@ -8,14 +8,35 @@
 </div>
 
 <GenericList List="Genres">
-
+    <WholeListTemplate>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Genres)
+                {
+                    <tr>
+                        <td>
+                            <a class="btn btn-success">Edit</a>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                        <td>@item.Name</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </WholeListTemplate>
 </GenericList>
 
 
 @code {
     List<Genre> Genres;
 
-    protected async Task OnIntializedAsync()
+    protected override async Task OnIntializedAsync()
     {
         try
         {

@@ -12,13 +12,16 @@ namespace Movie_Application.Client
         {
             Success = success;
             Response = response;
-            HttpResponseMessage = HttpResponseMessage;
+            HttpResponseMessage = httpResponseMessage;
         }
+
         public bool Success { get; set; }
         public T Response { get; set; }
         public HttpResponseMessage HttpResponseMessage { get; set; }
+
         public async Task<string> GetBody()
         {
-            return await HttpResponseMessage.Content.ReadAsStringAsync();        }
+            return await HttpResponseMessage.Content.ReadAsStringAsync();
+        }
     }
 }

@@ -9,5 +9,6 @@ namespace Movie_Application.Client.Repository
     public interface IPeopleRepository
     {
         Task CreatePerson(Person genre);
+        Task<List<Person>> GetPeople();
     }
 }

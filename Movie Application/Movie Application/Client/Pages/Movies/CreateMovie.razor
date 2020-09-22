@@ -1,30 +1,39 @@
 ﻿@page "/movies/create"
 @inject NavigationManager navigationManager
 @inject IMoviesRepository moviesRepository
+@inject IGenreRepository genreRepository
 
 <h3>Create Movie</h3>
-
-<MovieForm Movie="Movie" OnValidSubmit="SaveMovie" NotSelectedGenres="NotSelected"/>
+@if (NotSelectedGenres != null)
+{
+    <MovieForm Movie="Movie" OnValidSubmit="SaveMovie" NotSelectedGenres="NotSelectedGenres" />
+}
 
 @code {
 
     private Movie Movie = new Movie();
+    private List<Genre> NotSelectedGenres;
+
+    protected async Task OnInitializedAsync()
+    {
+        NotSelectedGenres = await genreRepository.GetGenres();
+    }
 
     private List<Genre> NotSelected = new List<Genre>()
-    {
+{
         new Genre() {Id = 1, Name = "Action"},
-        new Genre() {Id = 1, Name = "Adventure"},
-        new Genre() {Id = 1, Name = "Animation"},
-        new Genre() {Id = 1, Name = "Comedy"},
-        new Genre() {Id = 1, Name = "Crime"},
-        new Genre() {Id = 1, Name = "Drama"},
-        new Genre() {Id = 1, Name = "Documentary"},
-        new Genre() {Id = 1, Name = "Fiction"},
-        new Genre() {Id = 1, Name = "Horror"},
-        new Genre() {Id = 1, Name = "Mystery"},
-        new Genre() {Id = 1, Name = "Romance"},
-        new Genre() {Id = 1, Name = "Science Fiction"},
-        new Genre() {Id = 1, Name = "Thriller"}
+        new Genre() {Id = 2, Name = "Adventure"},
+        new Genre() {Id = 3, Name = "Animation"},
+        new Genre() {Id = 4, Name = "Comedy"},
+        new Genre() {Id = 5, Name = "Crime"},
+        new Genre() {Id = 6, Name = "Drama"},
+        new Genre() {Id = 7, Name = "Documentary"},
+        new Genre() {Id = 8, Name = "Fiction"},
+        new Genre() {Id = 9, Name = "Horror"},
+        new Genre() {Id = 10, Name = "Mystery"},
+        new Genre() {Id = 11, Name = "Romance"},
+        new Genre() {Id = 12, Name = "Science Fiction"},
+        new Genre() {Id = 13, Name = "Thriller"}
     };
 
     private async Task SaveMovie()
@@ -32,12 +41,13 @@
         try
         {
             var movieId = await moviesRepository.CreateMovie(Movie);
-            navigationManager.NavigateTo($"movie/{movieId}/{Movie.Title.Replace(" ","-")}");
+            navigationManager.NavigateTo($"movie/{movieId}/{Movie.Title.Replace(" ", "-")}");
         }
         catch (Exception)
         {
 
         }
+
         //navigate to the movie route which is the detail page
         //navigationManager.NavigateTo("movies");
     }

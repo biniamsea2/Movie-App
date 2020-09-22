@@ -34,10 +34,6 @@ namespace Movie_Application.Client.Helper
         }
 
 
-
-
-
-
         public async Task<HttpResponseWrapper<object>> Post<T>(string url, T data)
         {
             var dataJson = JsonSerializer.Serialize(data);
@@ -45,6 +41,7 @@ namespace Movie_Application.Client.Helper
             var response = await httpClient.PostAsync(url, stringContent);
             return new HttpResponseWrapper<object>(null, response.IsSuccessStatusCode, response);
         }
+
         public async Task<HttpResponseWrapper<TResponse>> Post<T, TResponse>(string url, T data)
         {
             var dataJson = JsonSerializer.Serialize(data);
@@ -68,3 +65,4 @@ namespace Movie_Application.Client.Helper
         }
     }
 }
+

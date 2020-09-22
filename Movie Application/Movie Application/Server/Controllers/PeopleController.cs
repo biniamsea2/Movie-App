@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Movie_Application.Server.Helpers;
 using Movie_Application.Shared.Entities;
 using System;
@@ -31,6 +32,12 @@ namespace Movie_Application.Server.Controllers
             context.Add(person);
             await context.SaveChangesAsync();
             return person.Id;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<Person>>> Get()
+        {
+            return await context.People.ToListAsync();
         }
     }
 }

@@ -15,7 +15,7 @@ using Movie_Application.Client.Pages.People;
 namespace Movie_Application.Client
 {
     public class Program
-    {`
+    {
         public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);

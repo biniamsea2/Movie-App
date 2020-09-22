@@ -35,7 +35,6 @@ namespace Movie_Application.Client
             services.AddScoped<IGenreRepository, GenreRepository>();
             services.AddScoped<IPeopleRepository, PersonRepository>();
             services.AddScoped<IMoviesRepository, MoviesRepository>();
-            services.AddScoped<IGenreRepository, GenreRepository>();
             services.AddFileReaderService(options => options.InitializeOnFirstCall = true);
         }
     }

@@ -25,12 +25,20 @@ namespace Movie_Application.Server.Controllers
             return await context.Genres.ToListAsync();
         }
 
+        //[HttpPost]
+        //public async Task<ActionResult> Post(Genre genre)
+        //{
+        //    context.Add(genre);
+        //    await context.SaveChangesAsync();
+        //    return genre.Id;
+        //}
+
         [HttpPost]
-        public async Task<ActionResult> Post(Genre genre)
+        public async Task<ActionResult<int>> Post(Genre genre)
         {
             context.Add(genre);
             await context.SaveChangesAsync();
-            return Ok();
+            return genre.Id;
         }
     }
 }

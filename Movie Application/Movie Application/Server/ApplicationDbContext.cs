@@ -15,7 +15,6 @@ namespace Movie_Application.Server
                 
         }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 

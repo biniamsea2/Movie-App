@@ -73,5 +73,4 @@ Then select and open ```Movie Application.sln```
 
 ---
 ### Tables:  
-
 ---

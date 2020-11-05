@@ -10,7 +10,7 @@ namespace Movie_Application.Client.Repository
     public class GenreRepository : IGenreRepository
     {
         private readonly IHttpService httpService;
-        private string url = "api/genres";
+        private string url = "api/genre";
 
         public GenreRepository(IHttpService httpService)
         {

@@ -14,7 +14,7 @@
     private Movie Movie = new Movie();
     private List<Genre> NotSelectedGenres;
 
-    protected async Task OnInitializedAsync()
+    protected async override Task OnInitializedAsync()
     {
         NotSelectedGenres = await genreRepository.GetGenres();
     }

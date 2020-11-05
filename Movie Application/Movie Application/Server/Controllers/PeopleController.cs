@@ -22,7 +22,7 @@ namespace Movie_Application.Server.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<int>> Post (Person person)
+        public async Task<ActionResult<int>> Post(Person person)
         {
             if (!string.IsNullOrWhiteSpace(person.Picture))
             {
@@ -32,6 +32,19 @@ namespace Movie_Application.Server.Controllers
             context.Add(person);
             await context.SaveChangesAsync();
             return person.Id;
+        }
+        // allows the user to search within the search box
+        [HttpGet("search/{searchText}")]
+        public async Task<ActionResult<List<Person>>> FilterByName(string searchText)
+        {
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                return new List<Person>();
+            }
+            //bring just 5
+            return await context.People.Where(x => x.Name.Contains(searchText))
+                .Take(5)
+                .ToListAsync();
         }
 
         [HttpGet]

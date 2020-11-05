@@ -10,5 +10,6 @@ namespace Movie_Application.Client.Repository
     {
         Task CreatePerson(Person genre);
         Task<List<Person>> GetPeople();
+        Task<List<Person>> GetPeopleByName(string name);
     }
 }

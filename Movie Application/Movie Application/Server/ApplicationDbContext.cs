@@ -19,7 +19,7 @@ namespace Movie_Application.Server
         {
 
             modelBuilder.Entity<MovieActors>().HasKey(x => new { x.MovieId, x.PersonId });
-            modelBuilder.Entity<MoviesGenres>().HasKey(x => new { x.MovieId, x.GenresId });
+            modelBuilder.Entity<MoviesGenres>().HasKey(x => new { x.MovieId, x.GenreId });
 
             base.OnModelCreating(modelBuilder);
         }

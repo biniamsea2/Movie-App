@@ -9,5 +9,6 @@ namespace Movie_Application.Client.Pages.People
     public interface IMoviesRepository
     {
         Task<int> CreateMovie(Movie movie);
+        Task<IndexPageDTO> GetIndexPageDTO();
     }
 }

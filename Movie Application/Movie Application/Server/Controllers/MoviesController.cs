@@ -28,6 +28,14 @@ namespace Movie_Application.Server.Controllers
                 var poster = Convert.FromBase64String(movie.Poster);
                 movie.Poster = await fileStorageService.SaveFile(poster, "jpg", "movies");
             }
+
+            if (movie.MoviesActors != null)
+            {
+                for (int i = 0; i < movie.MoviesActors.Count; i++)
+                {
+                    movie.MoviesActors[i].Order = i + 1;
+                }
+            }
             context.Add(movie);
             await context.SaveChangesAsync();
             return movie.Id;

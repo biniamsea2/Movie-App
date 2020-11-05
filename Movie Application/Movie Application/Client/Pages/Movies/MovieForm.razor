@@ -107,7 +107,7 @@
     private async Task OnDataAnnotationsValidated()
     {
         Movie.MoviesGenres = Selected
-            .Select(x => new MoviesGenres { GenresId = int.Parse(x.Key) }).ToList();
+            .Select(x => new MoviesGenres { GenreId = int.Parse(x.Key) }).ToList();
         
         Movie.MoviesActors = SelectedActors
             .Select(x => new MovieActors { PersonId = x.Id, Character = x.Character }).ToList();

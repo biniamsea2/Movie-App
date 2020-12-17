@@ -12,9 +12,6 @@
 #### 1) 
 #### 2)   
 #### 3)   
-#### 4)   
-#### 5)   
-
 ---
 
 ### Unit Tests 
@@ -49,18 +46,6 @@ Then select and open ```Movie Application.sln```
 
 ### 
 ![Image 3]()
-
-### 
-![Image 4]()
-
-### 
-![Image 5]()
-
-### 
-![Image 6]()
-
-### 
-![Image 7]()
 
 
 ---

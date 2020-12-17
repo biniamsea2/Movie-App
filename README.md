@@ -62,14 +62,6 @@ Then select and open ```Movie Application.sln```
 ### 
 ![Image 7]()
 
-### 
-![Image 8]()
-
-### 
-![Image 9]()
-
-### 
-![Image 10]()
 
 ---
 ### Tables:  
